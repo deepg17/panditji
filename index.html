@@ -49,6 +49,12 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 10px 5%;
+            background: rgba(107, 45, 128, 0.98);
         }
         
         .header-container {
@@ -122,6 +128,34 @@
             width: 100%;
         }
         
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
         .cta-button {
             background: linear-gradient(135deg, var(--secondary), #c29725);
             color: white;
@@ -166,11 +200,67 @@
             box-shadow: 0 8px 20px rgba(212, 175, 55, 0.6);
         }
         
+        /* Sidebar Navigation */
+        .sidebar-nav {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: var(--primary);
+            z-index: 999;
+            padding: 80px 30px 30px;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sidebar-nav.active {
+            right: 0;
+        }
+        
+        .sidebar-nav ul {
+            list-style: none;
+        }
+        
+        .sidebar-nav ul li {
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px 0;
+            transition: 0.3s;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar-nav ul li a:hover {
+            color: var(--secondary);
+            padding-left: 10px;
+        }
+        
+        .close-sidebar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .close-sidebar:hover {
+            color: var(--secondary);
+            transform: rotate(90deg);
+        }
+        
         /* Hero Slider */
         .hero {
             padding: 180px 5% 100px;
             text-align: center;
-            background: linear-gradient(rgba(43, 21, 63, 0.85), rgba(43, 21, 63, 0.9)), url('https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(43, 21, 63, 0.85), rgba(43, 21, 63, 0.9)), url('https://media.istockphoto.com/id/1682222389/photo/indian-woman-worshipping-lord-ganesha-with-pooja-ki-thali-festival-celebration-aarti-at-home.jpg?s=612x612&w=0&k=20&c=DSNFJiQZbl4gAeUEGWgnvvUqNxFkp4aJmtf7kX9XrCc=') no-repeat center center/cover;
             color: white;
             position: relative;
             transform-style: preserve-3d;
@@ -390,6 +480,7 @@
             box-shadow: -30px 30px 50px rgba(0, 0, 0, 0.2);
             transition: 0.5s;
             overflow: hidden;
+            position: relative;
         }
         
         .about-image-placeholder:before {
@@ -520,12 +611,119 @@
             line-height: 1.7;
         }
         
+        /* Pandits Section */
+        .pandits {
+            padding: 100px 5%;
+            text-align: center;
+            background: linear-gradient(to right, #fdfcfb, #e2d1c3);
+            position: relative;
+        }
+        
+        .pandits:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 C30,100 70,100 100,0 L100,100 L0,100 Z" fill="rgba(107,45,128,0.05)"/></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+        
+        .pandits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pandit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: 0.4s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pandit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pandit-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 50px;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid var(--primary);
+        }
+        
+        .pandit-image.pandit-1 {
+            background-image: url('https://images.unsplash.com/photo-1621600411686-7f1a5ac812c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBhbmRpdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
+        }
+        
+        .pandit-image.pandit-2 {
+            background-image: url('https://images.unsplash.com/photo-1590080875482-2a48daed15c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBhbmRpdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
+        }
+        
+        .pandit-image.pandit-3 {
+            background-image: url('https://images.unsplash.com/photo-1597334876655-0e4e4a5c943d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBhbmRpdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
+        }
+        
+        .pandit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-family: 'Marcellus', serif;
+        }
+        
+        .pandit-specialty {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .pandit-experience {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .exp-item {
+            background: var(--light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .pandit-card .cta-button {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+        
         /* Testimonials Section */
         .testimonials {
             padding: 100px 5%;
             text-align: center;
             background: linear-gradient(to bottom, #e6e2d6, #f8f5f0);
             position: relative;
+            overflow: hidden;
         }
         
         .testimonials:before {
@@ -540,13 +738,16 @@
             z-index: 0;
         }
         
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+        .testimonials-slider {
             position: relative;
-            z-index: 1;
+            max-width: 1000px;
+            margin: 60px auto 0;
+            overflow: hidden;
+        }
+        
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.5s ease;
         }
         
         .testimonial-card {
@@ -558,10 +759,7 @@
             transform-style: preserve-3d;
             transition: 0.4s;
             text-align: left;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-10px) rotateY(5deg);
+            min-width: 100%;
         }
         
         .testimonial-card::before {
@@ -594,7 +792,6 @@
         .author-avatar {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--primary), #4a1c5c);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -602,6 +799,32 @@
             color: white;
             font-size: 24px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .author-avatar.avatar-1 {
+            background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2ZpbGUlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
+        }
+        
+        .author-avatar.avatar-2 {
+            background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2ZpbGUlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
+        }
+        
+        .author-avatar.avatar-3 {
+            background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fHByb2ZpbGUlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
+        }
+        
+        .author-avatar.avatar-4 {
+            background-image: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHByb2ZpbGUlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
+        }
+        
+        .author-avatar.avatar-5 {
+            background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fHByb2ZpbGUlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
+        }
+        
+        .author-avatar.avatar-6 {
+            background-image: url('https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fHByb2ZpbGUlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
         }
         
         .author-details h4 {
@@ -619,6 +842,27 @@
             color: var(--secondary);
             margin-top: 5px;
             font-size: 0.9rem;
+        }
+        
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(107, 45, 128, 0.3);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .testimonial-dot.active {
+            background: var(--primary);
+            transform: scale(1.3);
         }
         
         /* Booking Form */
@@ -732,6 +976,166 @@
             opacity: 1;
         }
         
+        /* Contact Section */
+        .contact {
+            padding: 100px 5%;
+            background: linear-gradient(to bottom, #f8f5f0, #e6e2d6);
+            text-align: center;
+            position: relative;
+        }
+        
+        .contact:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L0,100 Z" fill="rgba(107,45,128,0.05)"/></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-family: 'Marcellus', serif;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 20px;
+            margin-right: 15px;
+        }
+        
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .contact-text p {
+            color: var(--text);
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-family: 'Marcellus', serif;
+            text-align: center;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 100px 5%;
+            background: linear-gradient(to bottom, #f8f5f0, #e6e2d6);
+            text-align: center;
+            position: relative;
+        }
+        
+        .faq:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(107,45,128,0.05)"/></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 60px auto 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+        
+        .faq-question {
+            padding: 25px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: rgba(107, 45, 128, 0.05);
+        }
+        
+        .faq-question i {
+            transition: 0.3s;
+        }
+        
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 30px 25px;
+            max-height: 300px;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
         /* Footer */
         footer {
             background: linear-gradient(to right, #2d2d2d, #1a1a1a);
@@ -797,7 +1201,114 @@
             font-size: 0.9rem;
         }
         
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+        
+        .modal.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: translateY(50px);
+            transition: transform 0.5s ease;
+        }
+        
+        .modal.visible .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+            transition: 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: var(--accent);
+        }
+        
+        .modal-icon {
+            font-size: 60px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .modal h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-family: 'Marcellus', serif;
+        }
+        
+        .modal p {
+            margin-bottom: 25px;
+            color: var(--text);
+        }
+        
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+        
         @media (max-width: 992px) {
             .about-content {
                 grid-template-columns: 1fr;
@@ -813,20 +1324,30 @@
             }
             
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .header-container .cta-button {
+                display: none;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
             }
         }
         
         @media (max-width: 768px) {
             .header-container {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 20px;
-            }
-            
-            nav ul {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
             }
             
             .hero {
@@ -834,7 +1355,7 @@
             }
             
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
             .hero p {
@@ -848,6 +1369,45 @@
             .testimonials-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .form-container {
+                padding: 30px;
+            }
+            
+            .services-grid, .pandits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .about-image-placeholder {
+                height: 280px;
+            }
+            
+            .service-card, .pandit-card, .testimonial-card {
+                padding: 25px 20px;
+            }
         }
     </style>
 </head>
@@ -857,20 +1417,41 @@
         <div class="header-container">
             <div class="logo">
                 <div class="logo-icon"><i class="fas fa-om"></i></div>
-                <div class="logo-text">Bangalore<span>PanditJi</span></div>
+                <div class="logo-text">B<span>PanditJi</span></div>
             </div>
             <nav>
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#pandits">Our Pandits</a></li>
                     <li><a href="#booking">Booking</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <a href="#booking" class="cta-button">Book Now</a>
         </div>
     </header>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar-nav">
+        <div class="close-sidebar">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pandits">Our Pandits</a></li>
+            <li><a href="#booking">Booking</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
 
     <!-- Hero Slider -->
     <section class="hero">
@@ -882,7 +1463,7 @@
         </div>
         <div class="hero-content">
             <h1>Experience Divine Ceremonies with Expert Pandits</h1>
-            <p>Book verified, experienced priests for all your religious ceremonies across Bangalore</p>
+            <p>Book verified, experienced priests for all your religious ceremonies across Bangalore. We provide authentic Vedic rituals with complete devotion and precision for weddings, griha pravesh, naamkaran, and daily poojas.</p>
             <a href="#booking" class="cta-button">Book a Pandit</a>
             
             <div class="slider-controls">
@@ -902,16 +1483,17 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>Our Spiritual Journey</h3>
-                    <p>Bangalore Pandit Ji was founded with a divine mission: to connect devotees with authentic, knowledgeable pandits for their religious ceremonies. We understand the spiritual significance of these occasions and ensure that every ritual is performed with utmost devotion and precision.</p>
-                    <p>Our team meticulously verifies each pandit's credentials, expertise, and experience to guarantee authentic Vedic rituals. We serve all localities across Bangalore and specialize in a wide range of ceremonies including weddings, griha pravesh, naamkaran, and daily poojas.</p>
+                    <p>Pandit Ji was founded with a divine mission to connect devotees with authentic, knowledgeable pandits for their religious ceremonies. With over 15 years of service in the spiritual domain, we understand the profound significance of these sacred occasions and ensure that every ritual is performed with utmost devotion, precision, and adherence to Vedic traditions.</p>
+                    <p>Our team meticulously verifies each pandit's credentials, expertise, and experience through a rigorous selection process that includes background checks, assessment of Vedic knowledge, and evaluation of ceremonial execution skills. We serve all localities across Bangalore and specialize in a wide spectrum of ceremonies including weddings, griha pravesh, naamkaran, mundan, satyanarayan katha, havan, and daily poojas.</p>
+                    <p>What sets us apart is our commitment to preserving the authenticity of Vedic rituals while adapting to the needs of modern households. Our pandits are not only well-versed in scriptures but also possess the ability to explain the significance of each ritual in simple terms, creating a more meaningful experience for all participants.</p>
                     <a href="#booking" class="cta-button">Book a Pandit</a>
                 </div>
                 
                 <div class="about-image">
                     <div class="about-image-placeholder">
+                    <img src="https://media.istockphoto.com/id/1767120331/photo/slow-motion-close-up-of-old-indian-monk-chanting-in-an-ancient-temple-the-senior-guru-sings.jpg?s=612x612&w=0&k=20&c=6wz3HwSal9EHw405hkN78aVnCAH4Y08-KD9QMVhd3HY=" width="200%">
+
                         <i class="fas fa-lotus"></i>
-                        <p>Authentic Vedic Rituals</p>
-                        <p>Divine Spiritual Experience</p>
                     </div>
                 </div>
             </div>
@@ -922,7 +1504,7 @@
     <section class="services" id="services">
         <div class="container">
             <h2 class="section-title">Our Services</h2>
-            <p class="section-subtitle">We provide pandits for all types of religious ceremonies and occasions</p>
+            <p class="section-subtitle">We provide pandits for all types of religious ceremonies and occasions with complete ritual arrangements</p>
             
             <div class="services-grid">
                 <div class="service-card">
@@ -930,7 +1512,7 @@
                         <i class="fas fa-ring"></i>
                     </div>
                     <h3>Wedding Ceremonies</h3>
-                    <p>Experienced pandits for traditional wedding ceremonies with complete rituals and customs. We ensure your special day is blessed with authentic Vedic ceremonies.</p>
+                    <p>Experienced pandits for traditional wedding ceremonies with complete rituals and customs. We ensure your special day is blessed with authentic Vedic ceremonies including kanyadaan, saptapadi, mangalsutra, and sindoor ceremonies. Our pandits guide the entire process with explanations for each ritual.</p>
                 </div>
                 
                 <div class="service-card">
@@ -938,7 +1520,7 @@
                         <i class="fas fa-home"></i>
                     </div>
                     <h3>Griha Pravesh</h3>
-                    <p>House warming ceremonies performed by knowledgeable priests with Vastu expertise. Begin your new journey in your home with divine blessings.</p>
+                    <p>House warming ceremonies performed by knowledgeable priests with Vastu expertise. Begin your new journey in your home with divine blessings through proper vastu pooja, havan, and purification rituals. We ensure positive energy flow and prosperity in your new abode.</p>
                 </div>
                 
                 <div class="service-card">
@@ -946,7 +1528,7 @@
                         <i class="fas fa-baby"></i>
                     </div>
                     <h3>Naming Ceremonies</h3>
-                    <p>Beautiful naming ceremonies performed with traditional rituals and blessings. Give your child an auspicious start to their life journey.</p>
+                    <p>Beautiful naming ceremonies performed with traditional rituals and blessings. Give your child an auspicious start to their life journey with proper naamkaran sanskar performed at the most auspicious time according to the child's birth chart and nakshatra.</p>
                 </div>
                 
                 <div class="service-card">
@@ -954,7 +1536,78 @@
                         <i class="fas fa-fire"></i>
                     </div>
                     <h3>Regular Poojas</h3>
-                    <p>Daily, weekly or monthly poojas performed at your home or place of business. Maintain spiritual harmony with regular rituals.</p>
+                    <p>Daily, weekly or monthly poojas performed at your home or place of business. Maintain spiritual harmony with regular rituals including satyanarayan katha, havan, durga path, hanuman chalisa, and other deity-specific poojas for peace, prosperity, and success.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Muhurtham Selection</h3>
+                    <p>Expert consultation for selecting the most auspicious dates and times for your important life events and ceremonies. Our experienced astrologers analyze planetary positions to determine the most favorable muhurtham for weddings, griha pravesh, business inaugurations, and other significant events.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Special Rituals</h3>
+                    <p>Custom rituals for specific needs including Navagraha Shanti, Vastu Pooja, Rudrabhishek, Mahamrityunjaya Jaap, and other specialized ceremonies as per your requirements. We also provide solutions for planetary doshas and spiritual obstacles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pandits Section -->
+    <section class="pandits" id="pandits">
+        <div class="container">
+            <h2 class="section-title">Our Expert Pandits</h2>
+            <p class="section-subtitle">Meet our team of experienced and verified pandits serving across Bangalore with years of spiritual expertise</p>
+            
+            <div class="pandits-grid">
+                <div class="pandit-card">
+                    <div class="pandit-image pandit-1">
+                        <img src="https://media.istockphoto.com/id/1347480695/photo/beard-priest-holy-astrologer-guru-or-jyotishi-placing-cowrie-shells-on-chart-and-counting-to.jpg?s=612x612&w=0&k=20&c=Fa0mG3pfB7X_odMXwU4rM0lyyVFIradeKZjgmo3sd0Y=" width="150%">
+
+                    </div>
+                    <h3>Pandit Ramesh Sharma</h3>
+                    <p class="pandit-specialty">Vedic Rituals Specialist</p>
+                    <div class="pandit-experience">
+                        <span class="exp-item">25+ years</span>
+                        <span class="exp-item">Weddings</span>
+                    </div>
+                    <p>Expert in conducting wedding ceremonies with complete Vedic rituals and customs. Fluent in Sanskrit, Hindi, and Kannada. Known for his detailed explanations of rituals and patient approach with families.</p>
+                    <a href="#booking" class="cta-button">Book Now</a>
+                </div>
+                
+                <div class="pandit-card">
+                    <div class="pandit-image pandit-2">
+                    <img src="https://media.istockphoto.com/id/2168320373/photo/hindu-priest-performing-holy-ganga-aarti-in-varanasi.jpg?s=612x612&w=0&k=20&c=aMEvOGC-7KWfYNq_8T5keHdM_A2RdoMfzz-7vVthDQ4=" width="150%">
+
+                    </div>
+                    <h3>Pandit Suresh Joshi</h3>
+                    <p class="pandit-specialty">Vastu & Griha Pravesh</p>
+                    <div class="pandit-experience">
+                        <span class="exp-item">20+ years</span>
+                        <span class="exp-item">Vastu</span>
+                    </div>
+                    <p>Specializes in Griha Pravesh ceremonies with Vastu consultation for positive energy flow. Expertise in vastu shastra and space purification rituals. Provides practical vastu solutions for modern homes.</p>
+                    <a href="#booking" class="cta-button">Book Now</a>
+                </div>
+                
+                <div class="pandit-card">
+                    <div class="pandit-image pandit-3">
+                    <img src="https://media.istockphoto.com/id/1767120331/photo/slow-motion-close-up-of-old-indian-monk-chanting-in-an-ancient-temple-the-senior-guru-sings.jpg?s=612x612&w=0&k=20&c=6wz3HwSal9EHw405hkN78aVnCAH4Y08-KD9QMVhd3HY=" width="200%">
+
+                    </div>
+                    <h3>Pandit Vikram Bhatt</h3>
+                    <p class="pandit-specialty">Muhurtham & Astrology</p>
+                    <div class="pandit-experience">
+                        <span class="exp-item">30+ years</span>
+                        <span class="exp-item">Astrology</span>
+                    </div>
+                    <p>Expert in selecting auspicious dates and times for ceremonies based on Vedic astrology. Provides detailed janam kundali analysis, planetary remedies, and personalized spiritual guidance for life's challenges.</p>
+                    <a href="#booking" class="cta-button">Book Now</a>
                 </div>
             </div>
         </div>
@@ -966,66 +1619,125 @@
             <h2 class="section-title">Customer Testimonials</h2>
             <p class="section-subtitle">Read what our clients have to say about their experience with our pandit services</p>
             
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">I booked Pandit Ramesh Sharma for my daughter's wedding ceremony. His knowledge of rituals and calm demeanor made the entire process smooth and meaningful. Highly recommended!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <i class="fas fa-user"></i>
+            <div class="testimonials-slider">
+                <div class="testimonials-track">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">I booked Pandit Ramesh Sharma for my daughter's wedding ceremony. His knowledge of rituals and calm demeanor made the entire process smooth and meaningful. He explained each step in detail which helped our international guests understand and appreciate our traditions. The ceremony was perfectly timed and executed flawlessly. Highly recommended!</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar avatar-1"></div>
+                            <div class="author-details">
+                                <h4>Rajesh Kumar</h4>
+                                <p>Wedding Ceremony</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
                         </div>
-                        <div class="author-details">
-                            <h4>Rajesh Kumar</h4>
-                            <p>Wedding Ceremony</p>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">We needed a pandit for our griha pravesh ceremony at short notice. Bangalore Pandit Ji provided us with an experienced pandit who explained all the rituals beautifully. The ceremony was conducted with such devotion that all our family members felt truly blessed. The pandit also gave us valuable vastu tips for our new home. Thank you for making our housewarming so special!</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar avatar-2"></div>
+                            <div class="author-details">
+                                <h4>Priya S</h4>
+                                <p>Griha Pravesh</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Pandit Suresh Joshi performed the pooja for our new business venture. His chanting created such a peaceful atmosphere, and he took time to explain the significance of each ritual. Since the ceremony, our business has seen remarkable growth. The positive energy he brought to our office is still felt by everyone who visits. We will definitely book his services again for our annual pooja.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar avatar-3"></div>
+                            <div class="author-details">
+                                <h4>Vikram Mehta</h4>
+                                <p>Business Pooja</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">We contacted Bangalore Pandit Ji for our baby's naming ceremony. Pandit Vikram Bhatt helped us choose the perfect name based on the birth chart and performed a beautiful naamkaran ceremony. His gentle approach with our newborn and detailed explanations made the experience memorable. The personalized horoscope he provided was incredibly detailed. Excellent service!</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar avatar-4"></div>
+                            <div class="author-details">
+                                <h4>Anjali & Sanjay</h4>
+                                <p>Naming Ceremony</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">I've been using Bangalore Pandit Ji's services for all religious ceremonies in my family for the past 5 years. Their pandits are always punctual, well-prepared, and carry all necessary puja materials. The booking process is simple and their customer support is responsive. Most importantly, the spiritual energy their pandits bring to every ceremony is palpable. Highly recommended for all your religious needs!</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar avatar-5"></div>
+                            <div class="author-details">
+                                <h4>Mrs. Gupta</h4>
+                                <p>Regular Customer</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">We consulted Pandit Vikram Bhatt for muhurtham selection for our son's upanayanam ceremony. His detailed analysis of planetary positions and explanation of why certain dates were more auspicious was incredibly insightful. The ceremony went smoothly on the selected date and time. His follow-up after the ceremony to ensure everything went well was much appreciated. Truly professional service!</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar avatar-6"></div>
+                            <div class="author-details">
+                                <h4>Ravi Shastry</h4>
+                                <p>Muhurtham Consultation</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-text">We needed a pandit for our griha pravesh ceremony at short notice. Bangalore Pandit Ji provided us with an experienced pandit who explained all the rituals beautifully. Thank you!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="author-details">
-                            <h4>Priya S</h4>
-                            <p>Griha Pravesh</p>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-text">Pandit Suresh Joshi performed the pooja for our new business venture. His chanting created such a peaceful atmosphere, and he took time to explain the significance of each ritual.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="author-details">
-                            <h4>Vikram Mehta</h4>
-                            <p>Business Pooja</p>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            
+            <div class="testimonial-nav">
+                <div class="testimonial-dot active"></div>
+                <div class="testimonial-dot"></div>
+                <div class="testimonial-dot"></div>
+                <div class="testimonial-dot"></div>
+                <div class="testimonial-dot"></div>
+                <div class="testimonial-dot"></div>
             </div>
         </div>
     </section>
@@ -1037,60 +1749,228 @@
             <p class="section-subtitle">Fill out the form below and we'll connect you with a suitable pandit within hours</p>
             
             <div class="form-container">
-                <form>
+                <form id="booking-form">
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="name">Your Name</label>
-                            <input type="text" id="name" placeholder="Enter your full name">
+                            <input type="text" id="name" placeholder="Enter your full name" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="Enter your email">
+                            <input type="email" id="email" placeholder="Enter your email" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" placeholder="Enter your phone number">
+                            <input type="tel" id="phone" placeholder="Enter your phone number" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="ceremony">Type of Ceremony</label>
-                            <select id="ceremony">
+                            <select id="ceremony" required>
                                 <option value="">Select Ceremony Type</option>
                                 <option value="wedding">Wedding Ceremony</option>
                                 <option value="housewarming">Griha Pravesh (House Warming)</option>
-                                <option value="pooja">Regular Pooja</option>
                                 <option value="naming">Naming Ceremony</option>
+                                <option value="upanayanam">Upanayanam (Thread Ceremony)</option>
+                                <option value="pooja">Regular Pooja</option>
+                                <option value="satyanarayan">Satyanarayan Katha</option>
+                                <option value="havan">Havan</option>
+                                <option value="muhurtham">Muhurtham Selection</option>
                                 <option value="other">Other Ceremony</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
                             <label for="date">Preferred Date</label>
-                            <input type="date" id="date">
+                            <input type="date" id="date" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="location">Location in Bangalore</label>
-                            <select id="location">
+                            <select id="location" required>
                                 <option value="">Select Area</option>
                                 <option value="central">Central Bangalore</option>
                                 <option value="north">North Bangalore</option>
                                 <option value="south">South Bangalore</option>
                                 <option value="east">East Bangalore</option>
                                 <option value="west">West Bangalore</option>
+                                <option value="whitefield">Whitefield</option>
+                                <option value="electronic_city">Electronic City</option>
+                                <option value="yelahanka">Yelahanka</option>
+                                <option value="rr_nagar">Rajarajeshwari Nagar</option>
                             </select>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="message">Additional Details</label>
-                        <textarea id="message" placeholder="Any specific requirements or details about the ceremony"></textarea>
+                        <textarea id="message" placeholder="Any specific requirements or details about the ceremony, preferred language, number of guests, etc."></textarea>
                     </div>
                     
                     <button type="submit" class="submit-btn">Submit Booking Request</button>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">Get in touch with us for any queries or special requirements</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Our Address</h4>
+                            <p>No. 45, Temple Street, VV Puram, Bangalore - 560004</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Call Us</h4>
+                            <p>+91 9876543210</p>
+                            <p>+91 9123456789</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email Us</h4>
+                            <p>info@bangalorepanditji.com</p>
+                            <p>bookings@bangalorepanditji.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Working Hours</h4>
+                            <p>Monday - Saturday: 7:00 AM - 9:00 PM</p>
+                            <p>Sunday: 8:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Message</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject">
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Find answers to common questions about our pandit booking services</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How far in advance should I book a pandit?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We recommend booking at least 2-3 weeks in advance for standard ceremonies. For weddings and major events, we suggest booking 1-2 months ahead to ensure availability of our most experienced pandits. However, we understand that some ceremonies need to be arranged urgently, and we try our best to accommodate last-minute requests based on pandit availability.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What areas of Bangalore do you serve?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We serve all areas of Bangalore including Central, North, South, East, and West Bangalore. Our pandits are located across the city to ensure timely arrival at your ceremony. We cover all major localities like Whitefield, Electronic City, Yelahanka, Rajarajeshwari Nagar, Koramangala, Indiranagar, Jayanagar, Malleshwaram, and many more. Please contact us if you need service in a specific area.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is included in your service?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our service includes a verified, experienced pandit who will perform the ceremony according to Vedic traditions. The pandit will bring all necessary puja materials (additional charges may apply for materials). Guidance throughout the ceremony is included. For certain ceremonies, we can also arrange for additional helpers, audio systems for mantras, and other requirements at an extra cost. Please specify your needs during booking.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How are your pandits verified?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All our pandits undergo a rigorous verification process including background checks, verification of qualifications and experience, and assessment of their knowledge of Vedic rituals. We also check customer feedback and ratings. Many of our pandits come from traditional priest families with generations of experience. We continuously monitor performance through customer feedback to maintain our high standards.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if I need to cancel or reschedule?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can cancel or reschedule up to 48 hours before the ceremony without any charges. For cancellations within 48 hours, a nominal fee may apply depending on the circumstances. In case of emergencies, we try to be as flexible as possible. Rescheduling is subject to pandit availability. We recommend informing us as early as possible for any changes to your booking.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do your pandits speak English and Kannada?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, most of our pandits are fluent in English, Kannada, and Hindi. During the booking process, you can specify your language preference, and we will assign a pandit who can communicate in your preferred language. Our pandits are skilled at explaining rituals in simple terms regardless of the language, ensuring all participants understand and appreciate the ceremony.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is your pricing structure?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our pricing varies based on the type of ceremony, duration, complexity, and the experience level of the pandit. Basic ceremonies start from ₹1500, while more complex rituals like weddings may range from ₹5000 to ₹15000. The final cost will be communicated during the booking confirmation. We believe in transparent pricing with no hidden charges.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1101,7 +1981,7 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Bangalore PanditJi</h3>
-                    <p>Connecting you with experienced and verified pandits for all your religious ceremonies in Bangalore.</p>
+                    <p>Connecting you with experienced and verified pandits for all your religious ceremonies in Bangalore. We ensure authentic Vedic rituals performed with devotion and precision.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1115,8 +1995,10 @@
                     <a href="#">Home</a>
                     <a href="#about">About</a>
                     <a href="#services">Services</a>
+                    <a href="#pandits">Our Pandits</a>
                     <a href="#testimonials">Testimonials</a>
                     <a href="#booking">Booking</a>
+                    <a href="#contact">Contact</a>
                 </div>
                 
                 <div class="footer-column">
@@ -1125,6 +2007,7 @@
                     <a href="#">Griha Pravesh</a>
                     <a href="#">Naming Ceremonies</a>
                     <a href="#">Regular Poojas</a>
+                    <a href="#">Muhurtham Selection</a>
                     <a href="#">Vedic Rituals</a>
                 </div>
                 
@@ -1142,31 +2025,154 @@
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Booking Request Received!</h3>
+            <p>Thank you for your booking request. We will contact you shortly to confirm your booking details.</p>
+            <button class="cta-button" id="modal-ok">OK</button>
+        </div>
+    </div>
+
     <script>
-        // Simple slider functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const dots = document.querySelectorAll('.slider-dot');
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('nav ul');
+            const sidebarNav = document.querySelector('.sidebar-nav');
+            const closeSidebar = document.querySelector('.close-sidebar');
             
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    // Remove active class from all dots
-                    dots.forEach(d => d.classList.remove('active'));
-                    // Add active class to clicked dot
-                    dot.classList.add('active');
-                    
-                    // In a real implementation, this would change the slide content
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                sidebarNav.classList.toggle('active');
+            });
+            
+            closeSidebar.addEventListener('click', () => {
+                sidebarNav.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+            
+            // Close sidebar when clicking on links
+            document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebarNav.classList.remove('active');
+                    hamburger.classList.remove('active');
                 });
             });
             
-            // Form submission prevention for demo
-            document.querySelector('form').addEventListener('submit', function(e) {
+            // Header scroll effect
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Back to top button
+            const backToTopBtn = document.querySelector('.back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // FAQ accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Form submission
+            const bookingForm = document.getElementById('booking-form');
+            const contactForm = document.getElementById('contact-form');
+            const successModal = document.getElementById('success-modal');
+            const modalClose = document.querySelector('.modal-close');
+            const modalOk = document.getElementById('modal-ok');
+            
+            bookingForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('Thank you for your booking request! We will contact you shortly.');
+                successModal.classList.add('visible');
+            });
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                successModal.classList.add('visible');
+            });
+            
+            modalClose.addEventListener('click', () => {
+                successModal.classList.remove('visible');
+            });
+            
+            modalOk.addEventListener('click', () => {
+                successModal.classList.remove('visible');
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === successModal) {
+                    successModal.classList.remove('visible');
+                }
+            });
+            
+            // Testimonials slider
+            const testimonialTrack = document.querySelector('.testimonials-track');
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const testimonialDots = document.querySelectorAll('.testimonial-dot');
+            let currentTestimonial = 0;
+            
+            function moveTestimonial() {
+                testimonialTrack.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+                
+                // Update active dot
+                testimonialDots.forEach((dot, index) => {
+                    if (index === currentTestimonial) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Auto slide testimonials
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonialCards.length;
+                moveTestimonial();
+            }, 5000);
+            
+            // Click on dots to navigate testimonials
+            testimonialDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentTestimonial = index;
+                    moveTestimonial();
+                });
             });
             
             // Animate elements on scroll
             const animateOnScroll = function() {
-                const elements = document.querySelectorAll('.service-card, .testimonial-card, .about-image-placeholder');
+                const elements = document.querySelectorAll('.service-card, .testimonial-card, .about-image-placeholder, .pandit-card, .faq-item, .contact-info, .contact-form');
                 
                 elements.forEach(element => {
                     const position = element.getBoundingClientRect();
@@ -1180,7 +2186,7 @@
             };
             
             // Set initial state for animated elements
-            const services = document.querySelectorAll('.service-card, .testimonial-card');
+            const services = document.querySelectorAll('.service-card, .testimonial-card, .pandit-card, .faq-item, .contact-info, .contact-form');
             services.forEach(card => {
                 card.style.opacity = 0;
                 card.style.transform = 'translateY(50px)';
@@ -1196,6 +2202,43 @@
             window.addEventListener('scroll', animateOnScroll);
             // Initial check
             animateOnScroll();
+            
+            // Simple slider functionality
+            const dots = document.querySelectorAll('.slider-dot');
+            const hero = document.querySelector('.hero');
+            const backgrounds = [
+                'linear-gradient(rgba(43, 21, 63, 0.85), rgba(43, 21, 63, 0.9)), url("https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80") no-repeat center center/cover',
+                'linear-gradient(rgba(43, 21, 63, 0.85), rgba(43, 21, 63, 0.9)), url("https://images.unsplash.com/photo-1605087151366-9d9d0c7242b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80") no-repeat center center/cover',
+                'linear-gradient(rgba(43, 21, 63, 0.85), rgba(43, 21, 63, 0.9)), url("https://images.unsplash.com/photo-1535016120720-40c646be5580?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80") no-repeat center center/cover'
+            ];
+            
+            let currentSlide = 0;
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    // Remove active class from all dots
+                    dots.forEach(d => d.classList.remove('active'));
+                    // Add active class to clicked dot
+                    dot.classList.add('active');
+                    
+                    // Change background
+                    currentSlide = index;
+                    hero.style.background = backgrounds[currentSlide];
+                });
+            });
+            
+            // Auto slide change
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % dots.length;
+                dots.forEach((d, i) => {
+                    if (i === currentSlide) {
+                        d.classList.add('active');
+                    } else {
+                        d.classList.remove('active');
+                    }
+                });
+                hero.style.background = backgrounds[currentSlide];
+            }, 5000);
         });
     </script>
 </body>
